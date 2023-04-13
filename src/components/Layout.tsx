@@ -11,7 +11,11 @@ export function Layout({children}: Props) {
     <Box>
       <Container
         maxWidth="lg"
-        sx={{mt: 4, mb: 4}}
+        sx={{
+          color: 'white',
+          mt: 4,
+          mb: 4
+        }}
       >
         {children}
       </Container>
