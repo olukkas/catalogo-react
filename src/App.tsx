@@ -6,16 +6,18 @@ import { Layout } from './components/Layout';
 import { appTheme } from './config/appTheme';
 
 
-
 function App() {
   return (
     <ThemeProvider theme={appTheme}>
       <Box
         component="main"
-        sx={{height: '100vh', backgroundColor: '#000'}}>
-        <Header />
+        sx={{
+          height: '100vh',
+          backgroundColor: theme => theme.palette.grey[900]
+        }}
+      >
+        <Header/>
         <Layout>
-          <h1>Olá mundo</h1>
         </Layout>
       </Box>
     </ThemeProvider>
