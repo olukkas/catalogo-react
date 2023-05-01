@@ -4,7 +4,7 @@ export const ListCategory = () => {
   return (
     <Box>
       <Typography variant={'h3'} component={'h1'}>
-        Home
+        ListCategory
       </Typography>
     </Box>
   );

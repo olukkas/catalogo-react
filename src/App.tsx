@@ -4,27 +4,10 @@ import { Header } from './components/Header';
 import { Layout } from './components/Layout';
 import { appTheme } from './config/appTheme';
 import { Route, Routes } from 'react-router-dom';
+import { CreateCategory } from './features/categories/CreateCategory';
+import { EditCategory } from './features/categories/EditCategory';
+import { ListCategory } from './features/categories/ListCategory';
 
-
-const Home = () => {
-  return (
-    <Box>
-      <Typography variant={'h3'} component={'h1'}>
-        Home
-      </Typography>
-    </Box>
-  );
-}
-
-const About = () => {
-  return (
-    <Box>
-      <Typography variant={'h3'} component={'h1'}>
-        About
-      </Typography>
-    </Box>
-  );
-}
 
 function App() {
   return (
@@ -40,8 +23,19 @@ function App() {
         <Layout>
           <h1>Welcome to react Router!</h1>
           <Routes>
-            <Route path={'/'} element={<Home />}/>
-            <Route path={'/about'} element={<About />}/>
+            <Route path={'/'} element={<ListCategory />}/>
+            <Route path={'/categories'} element={<ListCategory />}/>
+            <Route path={'/categories/create'} element={<CreateCategory />}/>
+            <Route path={'/categories/edit/:id'} element={<EditCategory />}/>
+            <Route 
+              path='*'
+              element={
+                <Box sx={{ color: 'white' }}>
+                  <Typography variant='h1'>404</Typography>
+                  <Typography variant='h2'>Page not found</Typography>
+                </Box>
+              }
+            />
           </Routes>
         </Layout>
       </Box>
