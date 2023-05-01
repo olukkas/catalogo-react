@@ -1,6 +1,3 @@
-// noinspection JSUnusedGlobalSymbols
-
-import React from 'react';
 import './App.css';
 import { Box, ThemeProvider, Typography } from '@mui/material';
 import { Header } from './components/Header';
