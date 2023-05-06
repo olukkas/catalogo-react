@@ -20,7 +20,7 @@ const category: Category = {
     updated_at: '2023-08-15T10:59:09+0000',
 }
 
-const categories = [ 
+const categories = [
     category,
     { ...category, name: 'Peach', id: '1' },
     { ...category, name: 'Banana', id: '2' },
@@ -31,12 +31,12 @@ export const initialState = {
     categories
 }
 
-const categorySlice = createSlice({ 
+const categorySlice = createSlice({
     name: 'categories',
     initialState,
     reducers: {
-        createCategory(state, action) {},
-        editCategory(state, action) {}
+        createCategory(_state, _action) { },
+        editCategory(_state, _action) { }
     }
 })
 
