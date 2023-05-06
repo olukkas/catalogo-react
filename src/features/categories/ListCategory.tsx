@@ -15,8 +15,6 @@ export const ListCategory = () => {
         createdAt: new Date(category.created_at).toLocaleDateString('pt-BR')
     }))
 
-
-
     const columns: GridColDef[] = [
         {
             field: 'name',
