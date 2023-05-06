@@ -1,7 +1,7 @@
-import { Box, Button, Link, } from "@mui/material";
+import { Box, Button, Link, Typography, } from "@mui/material";
 import { useAppSelector } from "../../app/hooks";
 import { selectcategories } from "./categorySlice";
-import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridRenderCellParams, GridRowsProp } from '@mui/x-data-grid'
 
 export const ListCategory = () => {
 
@@ -10,15 +10,44 @@ export const ListCategory = () => {
     const rows: GridRowsProp = categories.map(category => ({
         id: category.id,
         name: category.name,
-        description: category.description
+        description: category.description,
+        is_active: category.is_active
     }))
 
+
+
     const columns: GridColDef[] = [
-        { field: 'id', headerName: 'ID', width: 150 },
-        { field: 'name', headerName: 'Name', width: 150 },
-        { field: 'description', headerName: 'Description', width: 150 },
+        {
+            field: 'id',
+            headerName: 'ID',
+            flex: 1,
+        },
+        {
+            field: 'name',
+            headerName: 'Name',
+            flex: 1
+        },
+        {
+            field: 'description',
+            headerName: 'Description',
+            flex: 1
+        },
+        {
+            field: 'is_active',
+            headerName: 'Active',
+            flex: 1,
+            type: 'boolean',
+            renderCell: renderIsActiveCell
+        }
     ];
 
+    function renderIsActiveCell(row: GridRenderCellParams) {
+        return (
+            <Typography color={row.value ? 'primary' : 'secondary'}>
+                {row.value ? 'Active' : 'Inactive'}
+            </Typography>
+        )
+    }
 
     return (
         <Box maxWidth={'lg'} sx={{ mt: 4, mb: 4 }}>
@@ -33,7 +62,7 @@ export const ListCategory = () => {
                     New Category
                 </Button>
             </Box>
-            <div style={{ height: 300, width: '100%' }}>
+            <div style={{ height: 350, width: '100%' }}>
                 <DataGrid rows={rows} columns={columns} />
             </div>
         </Box>
