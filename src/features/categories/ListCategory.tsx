@@ -1,7 +1,8 @@
-import { Box, Button, Link, Typography, } from "@mui/material";
+import { Box, Button, IconButton, Link, Typography, } from "@mui/material";
 import { useAppSelector } from "../../app/hooks";
 import { selectcategories } from "./categorySlice";
 import { DataGrid, GridColDef, GridRenderCellParams, GridRowsProp } from '@mui/x-data-grid'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 export const ListCategory = () => {
 
@@ -10,42 +11,55 @@ export const ListCategory = () => {
     const rows: GridRowsProp = categories.map(category => ({
         id: category.id,
         name: category.name,
-        description: category.description,
-        is_active: category.is_active
+        isActive: category.is_active,
+        createdAt: new Date(category.created_at).toLocaleDateString('pt-BR')
     }))
 
 
 
     const columns: GridColDef[] = [
         {
-            field: 'id',
-            headerName: 'ID',
-            flex: 1,
-        },
-        {
             field: 'name',
             headerName: 'Name',
             flex: 1
         },
         {
-            field: 'description',
-            headerName: 'Description',
-            flex: 1
-        },
-        {
-            field: 'is_active',
+            field: 'isActive',
             headerName: 'Active',
             flex: 1,
             type: 'boolean',
-            renderCell: renderIsActiveCell
-        }
+            renderCell: renderIsActiveCell,
+        },
+        {
+            field: 'createdAt',
+            headerName: 'Create at',
+            flex: 1,
+        },
+        {
+            field: 'id',
+            headerName: 'Actions',
+            flex: 1,
+            renderCell: renderActionsCell
+        },
     ];
 
     function renderIsActiveCell(row: GridRenderCellParams) {
         return (
-            <Typography color={row.value ? 'primary' : 'secondary'}>
+            <Typography>
                 {row.value ? 'Active' : 'Inactive'}
             </Typography>
+        )
+    }
+
+    function renderActionsCell(row: GridRenderCellParams) {
+        return (
+            <IconButton
+                color='secondary'
+                onClick={() => console.log(row.value)}
+                aria-label='delete'
+            >
+                <DeleteIcon />
+            </IconButton>
         )
     }
 
