@@ -19,7 +19,9 @@ export const EditCategory = () => {
   const category = useAppSelector(state => selectCategoryById(state, id));
   const [isDisable, setIsDisable] = useState(false);
 
-  const handleChange = (_e: any) => { }
+  const handleChange = (_e: any) => {
+    setIsDisable(true);
+  }
 
   return (
     <Box>
