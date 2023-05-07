@@ -1,13 +1,26 @@
 import {
   Box,
+  Button,
   FormControl,
   Grid,
+  Link,
   Paper,
   TextField,
   Typography
 } from "@mui/material";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useAppSelector } from "../../app/hooks";
+import { selectCategoryById } from "./categorySlice";
 
 export const EditCategory = () => {
+  const id = useParams().id || ''
+
+  const category = useAppSelector(state => selectCategoryById(state, id));
+  const [isDisable, setIsDisable] = useState(false);
+
+  const handleChange = (_e: any) => { }
+
   return (
     <Box>
       <Paper>
@@ -25,13 +38,44 @@ export const EditCategory = () => {
                   <TextField
                     required
                     name='name'
-                    label='name'
-                    value={'0'}
-                    disabled={false}
-                    onChange={console.log}
+                    label='Name'
+                    value={category.name}
+                    disabled={isDisable}
+                    onChange={handleChange}
                   />
                 </FormControl>
               </Grid>
+
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <TextField
+                    required
+                    name='description'
+                    label='Description'
+                    value={category.description}
+                    disabled={isDisable}
+                    onChange={handleChange}
+                  />
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12}>
+                <Box display={'flex'} gap={2}>
+                  <Button variant="contained" LinkComponent={Link} href='/categories'>
+                    back
+                  </Button>
+
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                    disabled={isDisable}
+                  >
+                    {isDisable ? 'Loading...' : 'Save'}
+                  </Button>
+                </Box>
+              </Grid>
+
             </Grid>
           </form>
         </Box>
