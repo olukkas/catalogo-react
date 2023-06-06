@@ -2,9 +2,12 @@ import {
   Box,
   Button,
   FormControl,
+  FormControlLabel,
+  FormGroup,
   Grid,
   Link,
   Paper,
+  Switch,
   TextField,
   Typography
 } from "@mui/material";
@@ -21,6 +24,10 @@ export const EditCategory = () => {
 
   const handleChange = (_e: any) => {
     setIsDisable(true);
+  }
+
+  const handleToogle = (_e: any) => {
+
   }
 
   return (
@@ -62,6 +69,23 @@ export const EditCategory = () => {
               </Grid>
 
               <Grid item xs={12}>
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        name="isActive"
+                        color="secondary"
+                        onChange={handleToogle}
+                        checked={category.is_active}
+                        inputProps={{ "aria-label": "controlled" }}
+                      />
+                    }
+                    label='Active'
+                  />
+                </FormGroup>
+              </Grid>
+
+              <Grid item xs={12}>
                 <Box display={'flex'} gap={2}>
                   <Button variant="contained" LinkComponent={Link} href='/categories'>
                     back
@@ -77,7 +101,6 @@ export const EditCategory = () => {
                   </Button>
                 </Box>
               </Grid>
-
             </Grid>
           </form>
         </Box>
