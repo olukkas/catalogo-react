@@ -101,15 +101,15 @@ export const ListCategory = () => {
       </Box>
       <Box sx={{ dispaly: 'flex', heigth: 600 }}>
         <DataGrid
-          pageSizeOptions={[2, 20, 50, 100]}
-          disableRowSelectionOnClick={true}
-          disableColumnSelector={true}
-          disableDensitySelector={true}
-          disableColumnFilter={true}
           rows={rows}
           columns={columns}
-          slots={{ toolbar: GridToolbar }}
+          disableColumnFilter={true}
           slotProps={componetsdProps}
+          disableColumnSelector={true}
+          disableDensitySelector={true}
+          slots={{ toolbar: GridToolbar }}
+          disableRowSelectionOnClick={true}
+          pageSizeOptions={[2, 20, 50, 100]}
         />
       </Box>
     </Box>
